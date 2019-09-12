@@ -2,16 +2,20 @@
 
 [global]
 timeout = {{ rsync_server_timeout }}
+hosts allow = {{ rsync_server_hosts_allow }}
+auth users = {{ rsync_server_auth_users }}
 max connections = {{ rsync_server_max_connections }}
-log file = /var/log/rsyncd/rsyncd.log
-
+log file = /var/log/rsyncd.log
 
 {% for share in rsync_server_shares %}
 [{{ share.name }}]
-path = {{ share.path }}
-comment = {{ share.comment | default(share.path) }}
-read only = {{ share.readonly | default(True) | ternary('true', 'false' ) }}
-uid = {{ share.uid | default('nobody') }}
-gid = {{ share.gid | default('nobody') }}
-exclude = {{ share.excludes | default(['lost+found', '.*']) | join(' ') }}
+	path = {{ share.path }}
+	comment = {{ share.comment | default(share.path) }}
+	read only = {{ share.readonly | default(True) | ternary('true', 'false' ) }}
+	auth users = {{ share.auth_users | default("{{ rsync_server_auth_users }}") }}
+	hosts allow = {{ share.hosts_allow | default("{{ rsync_server_hosts_allow }}") }}
+	uid = {{ share.uid | default('apache') }}
+	gid = {{ share.gid | default('apache') }}
+	# exclude = {{ share.excludes | default(['lost+found']) | join(' ') }} 
+
 {% endfor %}

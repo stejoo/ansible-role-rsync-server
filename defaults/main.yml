@@ -3,6 +3,8 @@
 
 rsync_server_timeout: 300
 rsync_server_max_connections: 10
+rsync_server_hosts_allow: 127.0.0.1
+rsync_server_auth_users: backup
 rsync_server_shares: []
 
 rsync_server_logrotate_interval: weekly

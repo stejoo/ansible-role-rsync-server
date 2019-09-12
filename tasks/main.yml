@@ -16,9 +16,11 @@
 - name: rsyncd | configure shares
   become: yes
   template:
+    backup: yes
     dest: /etc/rsyncd.conf
     src: etc-rsyncd-conf.j2
-  # No need to reload, file is re-read on each client connection.
+  tags:
+    - rsyncd.conf
 
 - name: rsyncd | configure logrotate
   become: yes
