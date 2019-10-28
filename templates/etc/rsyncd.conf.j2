@@ -5,7 +5,7 @@ timeout = {{ rsync_server_timeout }}
 hosts allow = {{ rsync_server_hosts_allow }}
 auth users = {{ rsync_server_auth_users }}
 max connections = {{ rsync_server_max_connections }}
-log file = /var/log/rsyncd.log
+log file = /var/log/rsyncd/rsyncd.log
 dont compress = *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2 *.lzo *.lz4 *.xz *.txz *.zstd *.lz *.apk *.cab *.dmg *.rar *.war *.jar
 
 
