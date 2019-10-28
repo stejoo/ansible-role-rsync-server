@@ -14,6 +14,8 @@ Defaults: `defaults/main.yml`
 
 - `rsync_server_timeout`: Timeout for connections, default `300` seconds
 - `rsync_server_max_connections`: Maximum number of connections, default `10`
+- `rsync_server_hosts_allow`: Restrict access based on client IP address or hostname pattern.
+- `rsync_server_auth_users`: Usernames allowed to connect.
 - `rsync_server_shares`: A list of dictionaries of shares with fields:
   - `name`: The published name of the share, required
   - `path`: Filesystem path of the share, required
@@ -22,6 +24,8 @@ Defaults: `defaults/main.yml`
   - `uid`: User name or ID when access the share, default `nobody`
   - `gid`: Group name or ID when access the share, default `nobody`
   - `excludes`: A list of exclusions, default `['lost+found', '.*']`
+  - `auth_users`: A list of user/group based authorization rules for this share.
+  - `hosts_allow`: A list of IP addresses and/or hostname pattern to allow access.
 
 
 Log rotation:

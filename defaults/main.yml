@@ -6,8 +6,8 @@ rsync_server_timeout: 300
 rsync_server_max_connections: 10
 
 # Access control
-#rsync_server_hosts_allow: 127.0.0.1
-#rsync_server_auth_users: backup
+rsync_server_hosts_allow: []
+rsync_server_auth_users: []
 
 # Shares
 rsync_server_shares: []
