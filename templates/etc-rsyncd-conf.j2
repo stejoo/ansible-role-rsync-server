@@ -2,8 +2,8 @@
 
 [global]
 timeout = {{ rsync_server_timeout }}
-hosts allow = {{ rsync_server_hosts_allow }}
-auth users = {{ rsync_server_auth_users }}
+{% if rsync_server_hosts_allow %}hosts allow = {{ rsync_server_hosts_allow }}{% endif %}
+{% if rsync_server_auth_users  %}auth users = {{ rsync_server_auth_users }}{% endif %}
 max connections = {{ rsync_server_max_connections }}
 log file = /var/log/rsyncd/rsyncd.log
 
