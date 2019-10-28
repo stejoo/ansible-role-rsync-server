@@ -2,8 +2,8 @@
 
 [global]
 timeout = {{ rsync_server_timeout }}
-hosts allow = {{ rsync_server_hosts_allow }}
-auth users = {{ rsync_server_auth_users }}
+{% if rsync_server_hosts_allow %}hosts allow = {{ rsync_server_hosts_allow | join(', ') }}{% endif %}
+{% if rsync_server_auth_users  %}auth users = {{ rsync_server_auth_users   | join(', ') }}{% endif %}
 max connections = {{ rsync_server_max_connections }}
 log file = /var/log/rsyncd/rsyncd.log
 dont compress = *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2 *.lzo *.lz4 *.xz *.txz *.zstd *.lz *.apk *.cab *.dmg *.rar *.war *.jar
@@ -14,8 +14,8 @@ dont compress = *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2 *.lzo *.lz4 *.xz *.tx
   path = {{ share.path }}
   comment = {{ share.comment | default(share.path) }}
   read only = {{ share.readonly | default(True) | ternary('true', 'false' ) }}
-  {% if share.auth_users is defined  or rsync_server_auth_users  %}auth users = {{ share.auth_users | default("{{ rsync_server_auth_users }}" | join(', ')) }}{% endif %}
-  {% if share.hosts_allow is defined or rsync_server_hosts_allow %}hosts allow = {{ share.hosts_allow | default("{{ rsync_server_hosts_allow }}") | join(', ') }}{% endif %}
+{% if share.auth_users is defined  or rsync_server_auth_users  %}  auth users = {{ share.auth_users | default("{{ rsync_server_auth_users }}" | join(', ')) }}{% endif %}
+{% if share.hosts_allow is defined or rsync_server_hosts_allow %}  hosts allow = {{ share.hosts_allow | default("{{ rsync_server_hosts_allow }}") | join(', ') }}{% endif %}
   uid = {{ share.uid | default('nobody') }}
   gid = {{ share.gid | default('nobody') }}
   exclude = {{ share.excludes | default(['lost+found']) | join(' ') }}
