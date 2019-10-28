@@ -18,6 +18,8 @@
   template:
     dest: /etc/rsyncd.conf
     src: etc/rsyncd.conf.j2
+  tags:
+    - rsyncd.conf
   # No need to reload, file is re-read on each client connection.
 
 - name: rsyncd | configure logrotate
