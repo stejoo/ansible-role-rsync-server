@@ -16,7 +16,6 @@
 - name: rsyncd | configure shares
   become: yes
   template:
-    backup: yes
     dest: /etc/rsyncd.conf
     src: etc-rsyncd-conf.j2
   tags:

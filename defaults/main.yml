@@ -1,11 +1,17 @@
 ---
 # defaults file for rsync-server
 
+# Server settings
 rsync_server_timeout: 300
 rsync_server_max_connections: 10
-rsync_server_hosts_allow: 127.0.0.1
-rsync_server_auth_users: backup
+
+# Access control
+#rsync_server_hosts_allow: 127.0.0.1
+#rsync_server_auth_users: backup
+
+# Shares
 rsync_server_shares: []
 
+# Logrotate
 rsync_server_logrotate_interval: weekly
 rsync_server_logrotate_backlog_size: 52
